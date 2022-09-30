@@ -48,10 +48,14 @@ names
 farthest_distance_df <- flights %>%
   filter(origin %in% names)%>%
   group_by(origin)%>%
-  summarise(distance=max(distance))
-  
+  summarise(distance=max(distance))%>%
+  arrange(desc(distance))
+farthest_distance_df
+```
+Since 4983>1620, we could just find that air line.
 
-result <- left_join(farthest_distance_df,flights,by=c("origin","distance")) %>% 
+```{r}
+result <- left_join(farthest_distance_df[1,],flights,by=c("origin","distance")) %>% 
   select(c('origin','distance','dest'))%>%
   unique()%>%
   left_join(airports,by=c('dest'='faa'))%>%
