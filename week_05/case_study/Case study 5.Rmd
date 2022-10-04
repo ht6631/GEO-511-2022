@@ -43,7 +43,7 @@ Canada_buffer=st_buffer(Canada,distance)
 
 ```
 
-# 4. Result
+# 4. Results
 ```{r,out.width='60%',fig.align='center'}
 intersected=st_intersection(NY,Canada_buffer)
 ggplot()+
@@ -53,5 +53,9 @@ ggplot()+
   ylab('Latitude')+
   ggtitle('Be ware of Canadians')+
   theme_bw()
-```
+area_cal=st_area(intersected)
+units(area_cal)=as_units('km^2')
 
+area_cal
+```
+Area result is 3495.19 km^2.
